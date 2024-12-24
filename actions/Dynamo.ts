@@ -29,6 +29,7 @@ export async function AddBookAction(Book:BookType) {
     const { userId } = await auth();
     // since this app is single user, I only want to allow requests from my userId
     // Clerk provides a restriceted sign up mode but better to be safe than sorry, especially since server actions are public
+    if (userId){
     if (userId === productionID || developmentID){
         const command = new PutCommand({
             TableName: table,
@@ -39,7 +40,7 @@ export async function AddBookAction(Book:BookType) {
           return response;
     } else {
         return ("User is not signed in")
-    }
+    }}
   };
   
   // pull all books in your database
@@ -64,6 +65,7 @@ export async function AddBookAction(Book:BookType) {
     const { userId } = await auth();
     // Since this app is single user, I only want to allow requests from my userId
     // Clerk provides a restricted sign-up mode but better to be safe than sorry, especially since server actions are public
+    if (userId) {
     if (userId === productionID || userId === developmentID) {
         const key = {
             title: updatedBook.title,
@@ -105,13 +107,14 @@ export async function AddBookAction(Book:BookType) {
         }
     } else {
         return "User is not signed in";
-    }
+    }}
 }
 
 // Delete an item from the database
 export async function DeleteBookAction( title: string, author: string) {
     const { userId } = await auth();
     // since this app is single user, I only want to allow requests from my userId
+    if (userId) {
     if (userId === productionID || developmentID){
         const key = {
             title: title,
@@ -132,5 +135,5 @@ export async function DeleteBookAction( title: string, author: string) {
         }
     } else {
         return ("User is not signed in");
-    }
+    }}
 }
