@@ -206,6 +206,7 @@ export default function BookCard({ title, author, dateStarted, dateFinished, not
                             <SelectItem value="Owned Digitally">Owned Digitally</SelectItem>
                             <SelectItem value="Owned Physically">Owned Physically</SelectItem>
                             <SelectItem value="Owned Digitally and Physically">{`Owned Digitally & Physically`}</SelectItem>
+                            <SelectItem value={'Reading'}>Reading</SelectItem>
                             <SelectItem value={'Read'}>Read</SelectItem>
                         </SelectContent>
                     </Select>
